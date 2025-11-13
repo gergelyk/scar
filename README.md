@@ -76,5 +76,7 @@ v run .
 v test .
 
 # release
-v -prod .
+v -prod -o scar-0.2.1-linux-x86_64 .
+v -prod -os linux -arch arm -o scar-0.2.1-linux-arm .
+v -prod -os linux -arch arm64 -o scar-0.2.1-linux-arm64 .
 ```
