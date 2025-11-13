@@ -3,7 +3,7 @@ import regex
 
 const (
     comment_prefixes = {
-        '#': 'py,ipy,cr,sh,elv,ion,fish,xsh,rb,r,nim,pl',
+        '#': 'py,ipy,cr,sh,elv,ion,fish,xsh,rb,r,nim,pl,toml,yaml,yml,ini',
         '//': 'v,h,hpp,c,cpp,rs,go,js,ts,java,kt,php,swift,scala,sc,re',
         '--': 'lua,elm,vhdl,hs,sql',
         '%': 'm',
