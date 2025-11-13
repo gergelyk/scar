@@ -141,13 +141,20 @@ fn (a App) prefix_from_input_files(filenames []string) ?string {
 }
 
 fn (a App) determine_prefix(prefix_opt string, archive_path string, filenames []string) !string {
-	prefix := a.prefix_from_opt(prefix_opt) or {
-		a.prefix_from_archive_path(archive_path) or {
-			a.prefix_from_input_files(filenames) or {
-				return error('Comment prefix cannot be determined. Use -p option.')
+    mut tmp := ?string(none)
+
+    if p := a.prefix_from_opt(prefix_opt) {
+		tmp = p
+	} else {
+		if p := a.prefix_from_archive_path(archive_path) {
+			tmp = p
+		} else {
+			if p := a.prefix_from_input_files(filenames) {
+				tmp = p
 			}
 		}
 	}
+    prefix := tmp or { return error('Comment prefix cannot be determined. Use -p option.') }
 	a.log.info('Prefix in use: "${prefix}"')
 	return prefix
 }
