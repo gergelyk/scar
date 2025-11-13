@@ -2,12 +2,16 @@ module main
 
 import flag
 import os
+import v.vmod
+
+const module_name = vmod.decode(@VMOD_FILE)?.name
+const version = vmod.decode(@VMOD_FILE)?.version
 
 fn main() {
 	mut fp := flag.new_flag_parser(os.args)
 	fp.description('Source Code Archiver')
-	fp.application('scar') // TODO: take it form v.mod
-	fp.version('v0.2.0') // TODO: take it form v.mod
+	fp.application(module_name)
+	fp.version('v' + version)
 	fp.skip_executable()
 	fp.arguments_description('SOURCE_FILES | TARGET_DIR')
 	fp.footer('\nExamples:\n' +
