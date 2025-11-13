@@ -1,25 +1,25 @@
 import term
 
 interface ILogger {
-    error(msg string)
-    warn(msg string)
-    info(msg string)
-    debug(msg string)
+	error(msg string)
+	warn(msg string)
+	info(msg string)
+	debug(msg string)
 }
 
 fn xprintln(msg string) {
-    eprintln(msg)
+	eprintln(msg)
 }
 
 struct LoggerSilent {
 }
 
 struct LoggerWarnLevel {
-    LoggerSilent
+	LoggerSilent
 }
 
 struct LoggerDebugLevel {
-    LoggerWarnLevel
+	LoggerWarnLevel
 }
 
 fn (_ LoggerSilent) error(msg string) {
@@ -35,11 +35,11 @@ fn (_ LoggerSilent) debug(msg string) {
 }
 
 fn (_ LoggerWarnLevel) error(msg string) {
-    xprintln(term.red(msg))
+	xprintln(term.red(msg))
 }
 
 fn (_ LoggerWarnLevel) warn(msg string) {
-    xprintln(term.yellow(msg))
+	xprintln(term.yellow(msg))
 }
 
 fn (_ LoggerWarnLevel) info(msg string) {
@@ -49,9 +49,9 @@ fn (_ LoggerWarnLevel) debug(msg string) {
 }
 
 fn (_ LoggerDebugLevel) info(msg string) {
-    xprintln(term.green(msg))
+	xprintln(term.green(msg))
 }
 
 fn (_ LoggerDebugLevel) debug(msg string) {
-    xprintln(term.blue(msg))
+	xprintln(term.blue(msg))
 }
